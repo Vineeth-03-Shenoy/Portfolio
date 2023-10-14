@@ -184,6 +184,13 @@
                         <input type="radio" name="radio-btn" id="radio2">
                         <input type="radio" name="radio-btn" id="radio3">
                         <input type="radio" name="radio-btn" id="radio4">
+                        <input type="radio" name="radio-btn" id="radio5">
+                        <input type="radio" name="radio-btn" id="radio6">
+                        <input type="radio" name="radio-btn" id="radio7">
+                        <input type="radio" name="radio-btn" id="radio8">
+                        <input type="radio" name="radio-btn" id="radio9">
+                        <input type="radio" name="radio-btn" id="radio10">
+
                         <!--radio buttons end-->
                         <!--slide images start-->
                         <div class="slide first">
@@ -198,6 +205,24 @@
                         <div class="slide">
                             <img src="images/R for Data Science.jpg" alt="">
                         </div>
+                        <div class="slide">
+                            <img src="images/Data Ana with Py.jpg" alt="">
+                        </div>
+                        <div class="slide">
+                            <img src="images/Business analysis basics.jpg" alt="">
+                        </div>
+                        <div class="slide">
+                            <img src="images/Dashboards basics.jpg" alt="">
+                        </div>
+                        <div class="slide">
+                            <img src="images/Food and Health.jpg" alt="">
+                        </div>
+                        <div class="slide">
+                            <img src="images/Astronomy.jpg" alt="">
+                        </div>
+                        <div class="slide">
+                            <img src="images/Gwr.jpg" alt="">
+                        </div>
                         <!--slide images end-->
                         <!--automatic navigation start-->
                         <div class="navigation-auto">
@@ -205,6 +230,12 @@
                             <div class="auto-btn2"></div>
                             <div class="auto-btn3"></div>
                             <div class="auto-btn4"></div>
+                            <div class="auto-btn5"></div>
+                            <div class="auto-btn6"></div>
+                            <div class="auto-btn7"></div>
+                            <div class="auto-btn8"></div>
+                            <div class="auto-btn9"></div>
+                            <div class="auto-btn10"></div>
                         </div>
                         <!--automatic navigation end-->
                     </div>
@@ -214,6 +245,12 @@
                         <label for="radio2" class="manual-btn"></label>
                         <label for="radio3" class="manual-btn"></label>
                         <label for="radio4" class="manual-btn"></label>
+                        <label for="radio5" class="manual-btn"></label>
+                        <label for="radio6" class="manual-btn"></label>
+                        <label for="radio7" class="manual-btn"></label>
+                        <label for="radio8" class="manual-btn"></label>
+                        <label for="radio9" class="manual-btn"></label>
+                        <label for="radio10" class="manual-btn"></label>
                     </div>
                     <!--manual navigation end-->
                 </div>
@@ -235,6 +272,8 @@
                         <a href="https://www.instagram.com/vineeth_03_shenoy/"><i
                                 class="fa-brands fa-instagram"></i></a>
                         <a href="https://github.com/Vineeth-03-Shenoy"><i class="fa-brands fa-github"></i></a>
+                        <a href="https://www.linkedin.com/in/vineeth-shenoy-p-891ab1205"><i
+                                class="fa-brands fa-linkedin"></i></a>
                         <a href="https://www.linkedin.com/in/vineeth-shenoy-p-891ab1205"><i
                                 class="fa-brands fa-linkedin"></i></a>
                     </div>
@@ -288,10 +327,59 @@
         setInterval(function () {
             document.getElementById('radio' + counter).checked = true;
             counter++;
-            if (counter > 4) {
+            if (counter > 10) {
                 counter = 1;
             }
         }, 5000);
+    </script>
+
+    <script>
+        let touchstartX = 0;
+        let touchendX = 0;
+        const slider = document.querySelector('.slider');
+
+        slider.addEventListener('touchstart', (e) => {
+            touchstartX = e.touches[0].clientX;
+        });
+
+        slider.addEventListener('touchend', (e) => {
+            touchendX = e.changedTouches[0].clientX;
+            handleGesture();
+        });
+
+        function handleGesture() {
+            const minSwipeDistance = 100; // Minimum swipe distance in pixels
+
+            if (touchstartX - touchendX > minSwipeDistance) {
+                // Swipe right-to-left, go to next slide
+                goToNextSlide();
+            } else if (touchendX - touchstartX > minSwipeDistance) {
+                // Swipe left-to-right, go to previous slide
+                goToPreviousSlide();
+            }
+        }
+
+        function goToNextSlide() {
+            const radios = document.querySelectorAll('input[type="radio"]');
+            for (let i = 0; i < radios.length; i++) {
+                if (radios[i].checked) {
+                    radios[i].checked = false;
+                    radios[i + 1] && (radios[i + 1].checked = true);
+                    break;
+                }
+            }
+        }
+
+        function goToPreviousSlide() {
+            const radios = document.querySelectorAll('input[type="radio"]');
+            for (let i = 0; i < radios.length; i++) {
+                if (radios[i].checked) {
+                    radios[i].checked = false;
+                    radios[i - 1] && (radios[i - 1].checked = true);
+                    break;
+                }
+            }
+        }
     </script>
 
     <script>
