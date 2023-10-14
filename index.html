@@ -334,28 +334,38 @@
     </script>
 
     <script>
+        function isMobileDevice() {
+            return window.innerWidth <= 768; // Adjust the breakpoint as needed
+        }
+
         let touchstartX = 0;
         let touchendX = 0;
         const slider = document.querySelector('.slider');
 
         slider.addEventListener('touchstart', (e) => {
-            touchstartX = e.touches[0].clientX;
+            if (isMobileDevice()) {
+                touchstartX = e.touches[0].clientX;
+            }
         });
 
         slider.addEventListener('touchend', (e) => {
-            touchendX = e.changedTouches[0].clientX;
-            handleGesture();
+            if (isMobileDevice()) {
+                touchendX = e.changedTouches[0].clientX;
+                handleGesture();
+            }
         });
 
         function handleGesture() {
-            const minSwipeDistance = 100; // Minimum swipe distance in pixels
+            if (isMobileDevice()) {
+                const minSwipeDistance = 100; // Minimum swipe distance in pixels
 
-            if (touchstartX - touchendX > minSwipeDistance) {
-                // Swipe right-to-left, go to next slide
-                goToNextSlide();
-            } else if (touchendX - touchstartX > minSwipeDistance) {
-                // Swipe left-to-right, go to previous slide
-                goToPreviousSlide();
+                if (touchstartX - touchendX > minSwipeDistance) {
+                    // Swipe right-to-left, go to next slide
+                    goToNextSlide();
+                } else if (touchendX - touchstartX > minSwipeDistance) {
+                    // Swipe left-to-right, go to previous slide
+                    goToPreviousSlide();
+                }
             }
         }
 
