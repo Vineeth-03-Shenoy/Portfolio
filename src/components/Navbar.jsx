@@ -5,7 +5,14 @@ import { motion, AnimatePresence } from 'framer-motion';
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
-  const toggleMenu = () => setIsOpen(!isOpen);
+  const handleScroll = (e, targetId) => {
+    e.preventDefault();
+    const element = document.getElementById(targetId.substring(1)); // remove #
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+      setIsOpen(false);
+    }
+  };
 
   const navLinks = [
     { name: 'Home', href: '#home' },
@@ -19,7 +26,11 @@ const Navbar = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           <div className="flex-shrink-0 cursor-pointer">
-            <a href="#home" className='text-primary font-bold text-2xl tracking-tighter'>
+            <a 
+              href="#home" 
+              onClick={(e) => handleScroll(e, '#home')}
+              className='text-primary font-bold text-2xl tracking-tighter'
+            >
               VS<span className='text-textPrimary'>.</span>
             </a>
           </div>
@@ -31,7 +42,8 @@ const Navbar = () => {
                 <a
                   key={link.name}
                   href={link.href}
-                  className="text-textSecondary hover:text-primary transition-colors duration-300 px-3 py-2 rounded-md text-sm font-medium"
+                  onClick={(e) => handleScroll(e, link.href)}
+                  className="text-textSecondary hover:text-primary transition-colors duration-300 px-3 py-2 rounded-md text-sm font-medium cursor-pointer"
                 >
                   {link.name}
                 </a>
@@ -71,8 +83,8 @@ const Navbar = () => {
                 <a
                   key={link.name}
                   href={link.href}
-                  onClick={() => setIsOpen(false)}
-                  className="text-textSecondary hover:text-primary block px-3 py-2 rounded-md text-base font-medium"
+                  onClick={(e) => handleScroll(e, link.href)}
+                  className="text-textSecondary hover:text-primary block px-3 py-2 rounded-md text-base font-medium cursor-pointer"
                 >
                   {link.name}
                 </a>

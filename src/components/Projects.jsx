@@ -5,7 +5,7 @@ const Projects = () => {
     {
       title: "Agentic Consultation Management",
       description: "An end-to-end Agentic Consultation Management process presented at GITEX 2025. Showcased UiPath's Agentic Capabilities to streamline the appointment booking-to-consultation process. This solution garnered health care client prospects for Novigo Solutions.",
-      image: "/images/Consultaion_Solution_Architecture.png",
+      image: "images/Consultaion_Solution_Architecture.png",
       link: "https://forum.uipath.com/t/agentic-consultation-management-process/2878370",
       tags: ["UiPath Agents", "Agentic AI", "Healthcare", "GenAI"],
     },

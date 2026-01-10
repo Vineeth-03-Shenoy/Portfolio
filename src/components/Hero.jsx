@@ -53,7 +53,7 @@ const Hero = () => {
               <div className="absolute inset-0 rounded-full overflow-hidden border-4 border-card bg-card/50 backdrop-blur-sm z-10">
                  {/* Placeholder for user image */}
                  <img 
-                    src="/images/user.jpg" 
+                    src="images/user.jpg" 
                     alt="Vineeth Shenoy P" 
                     className="w-full h-full object-cover opacity-90"
                  />
