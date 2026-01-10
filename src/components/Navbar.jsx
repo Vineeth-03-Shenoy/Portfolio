@@ -13,8 +13,15 @@ const Navbar = () => {
       // Check if scrolled past threshold
       setScrolled(window.scrollY > 50);
 
+      // Check if at bottom of page - highlight Contact
+      const isAtBottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 50;
+      if (isAtBottom) {
+        setActiveSection('contact');
+        return;
+      }
+
       // Determine active section
-      const sections = ['home', 'about', 'projects', 'certifications', 'contact'];
+      const sections = ['home', 'about', 'projects', 'certifications', 'community', 'contact'];
       const scrollPosition = window.scrollY + 100;
 
       for (const section of sections) {
@@ -48,6 +55,8 @@ const Navbar = () => {
     { name: 'Home', href: '#home', id: 'home' },
     { name: 'About', href: '#about', id: 'about' },
     { name: 'Projects', href: '#projects', id: 'projects' },
+    { name: 'Certifications', href: '#certifications', id: 'certifications' },
+    { name: 'Community', href: '#community', id: 'community' },
     { name: 'Contact', href: '#contact', id: 'contact' },
   ];
 

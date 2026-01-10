@@ -17,7 +17,8 @@ const Projects = () => {
       image: null, 
       link: null, 
       tags: ["MERN Stack", "OpenAI API", "Graph API", "Hackathon"],
-      icon: "📧"
+      icon: "📧",
+      status: "Private Source Code"
     },
     {
       title: "Food Rendezvous",
@@ -25,7 +26,8 @@ const Projects = () => {
       image: null,
       link: null,
       tags: ["Web Development", "Blogging", "React"],
-      icon: "🍲"
+      icon: "🍲",
+      status: "In Development"
     },
   ];
 
@@ -137,6 +139,21 @@ const ProjectCard = ({ project, index }) => {
       />
       
       <div className="h-44 sm:h-48 overflow-hidden bg-gradient-to-br from-gray-800 to-gray-900 relative">
+        {/* Development Status Badge */}
+        {project.status && (
+          <motion.div
+            className="absolute top-3 right-3 z-20 px-3 py-1 bg-yellow-500/90 text-black text-xs font-bold rounded-full flex items-center gap-1.5"
+            animate={{ scale: [1, 1.05, 1] }}
+            transition={{ duration: 2, repeat: Infinity }}
+          >
+            <motion.span
+              className="w-2 h-2 bg-yellow-900 rounded-full"
+              animate={{ opacity: [1, 0.3, 1] }}
+              transition={{ duration: 1, repeat: Infinity }}
+            />
+            {project.status}
+          </motion.div>
+        )}
         {project.image ? (
           <img 
             src={project.image} 

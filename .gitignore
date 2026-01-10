@@ -1,10 +1,13 @@
 # Dependencies
 node_modules
+.pnp
+.pnp.js
 
 # Build output
 dist
 dist-ssr
 build
+*.local
 
 # Logs
 logs
@@ -16,7 +19,6 @@ pnpm-debug.log*
 lerna-debug.log*
 
 # Local env files
-*.local
 .env
 .env.local
 .env.development.local
@@ -26,16 +28,33 @@ lerna-debug.log*
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
+!.vscode/settings.json
 .idea
 *.suo
 *.ntvs*
 *.njsproj
 *.sln
 *.sw?
+*.swp
+*.swo
 
 # OS files
 .DS_Store
+.DS_Store?
+._*
 Thumbs.db
+ehthumbs.db
+Desktop.ini
 
 # Test coverage
 coverage
+*.lcov
+
+# Vercel
+.vercel
+
+# Cache
+.cache
+.parcel-cache
+.eslintcache
+*.tsbuildinfo

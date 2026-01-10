@@ -8,11 +8,14 @@ A modern, responsive portfolio website built with React, Vite, and Tailwind CSS 
 
 - **Modern Design**: Sleek dark theme with gradient accents
 - **Particle Background**: Animated floating particles with connections
-- **Typewriter Effect**: Dynamic role text animation
-- **3D Card Interactions**: Cards tilt toward cursor on hover
+- **Typewriter Effect**: Dynamic role text animation in Hero section
+- **3D Card Interactions**: Project cards tilt toward cursor on hover
 - **Scroll Progress**: Visual indicator showing page progress
-- **Active Section Highlighting**: Nav links highlight based on scroll
-- **Staggered Animations**: Elements animate in sequence
+- **Active Section Highlighting**: Nav links highlight based on scroll position
+- **Staggered Animations**: Elements animate in sequence as you scroll
+- **Status Badges**: Animated badges for project status ("In Development", "Private")
+- **Community Analytics**: UiPath forum contribution showcase
+- **Contact Form**: Google Sheets integration with email notifications
 - **Responsive**: Fully responsive across all devices
 - **Analytics**: Vercel Analytics integration
 
@@ -29,15 +32,18 @@ A modern, responsive portfolio website built with React, Vite, and Tailwind CSS 
 
 ```
 Portfolio/
-├── public/              # Static assets (images, PDF)
+├── public/
+│   ├── images/                  # Static images
+│   └── Vineeth_Shenoy_P.pdf     # Resume PDF
 ├── src/
 │   ├── components/
 │   │   ├── Navbar.jsx           # Responsive nav with active highlighting
-│   │   ├── Hero.jsx             # Animated hero with typewriter
-│   │   ├── About.jsx            # Interactive tabs
-│   │   ├── Projects.jsx         # 3D tilt project cards
-│   │   ├── Certifications.jsx   # Shine effect cards
-│   │   ├── Contact.jsx          # Form with Google Sheets
+│   │   ├── Hero.jsx             # Animated hero with typewriter effect
+│   │   ├── About.jsx            # Interactive tabs for Skills/Experience
+│   │   ├── Projects.jsx         # 3D tilt project cards with status badges
+│   │   ├── Certifications.jsx   # UiPath certification cards
+│   │   ├── Community.jsx        # UiPath forum contribution showcase
+│   │   ├── Contact.jsx          # Form with Google Sheets integration
 │   │   ├── ParticleBackground.jsx
 │   │   ├── ScrollProgress.jsx
 │   │   └── Typewriter.jsx
@@ -46,7 +52,10 @@ Portfolio/
 │   ├── App.jsx
 │   ├── main.jsx
 │   └── index.css
-└── package.json
+├── .gitignore
+├── package.json
+├── tailwind.config.js
+└── vite.config.js
 ```
 
 ## 🚀 Getting Started
@@ -80,13 +89,14 @@ npm run build
 
 ## 📦 Deployment
 
-Deployed on **Vercel** with automatic deployments on push to main.
+Deployed on **Vercel** with automatic deployments on push to main branch.
 
 ## 📧 Contact
 
 - **Email**: vineethshenoy22@gmail.com
 - **LinkedIn**: [Vineeth Shenoy P](https://www.linkedin.com/in/vineeth-shenoy-p/)
 - **GitHub**: [Vineeth-03-Shenoy](https://github.com/Vineeth-03-Shenoy)
+- **UiPath Forum**: [V_Roboto_V](https://forum.uipath.com/u/v_roboto_v/summary)
 
 ## 📄 License
 

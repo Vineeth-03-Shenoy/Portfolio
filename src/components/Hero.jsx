@@ -118,7 +118,7 @@ const Hero = () => {
               {/* Profile image */}
               <div className="absolute inset-0 rounded-full overflow-hidden border-4 border-card bg-card/50 backdrop-blur-sm z-10">
                 <img 
-                  src="/images/user.jpg" 
+                  src="/images/profile.png" 
                   alt="Vineeth Shenoy P" 
                   className="w-full h-full object-cover opacity-90 hover:opacity-100 transition-opacity duration-300"
                 />
