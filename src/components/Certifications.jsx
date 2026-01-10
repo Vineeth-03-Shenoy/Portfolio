@@ -1,3 +1,4 @@
+import { useState, useRef } from 'react';
 import { motion } from 'framer-motion';
 
 const Certifications = () => {
@@ -25,8 +26,16 @@ const Certifications = () => {
     }
   ];
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: { staggerChildren: 0.15 }
+    }
+  };
+
   return (
-    <section id="certifications" className="py-20 bg-background/50">
+    <section id="certifications" className="py-20 bg-background/50 relative z-10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -35,55 +44,113 @@ const Certifications = () => {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl font-bold text-textPrimary mb-4">Certifications</h2>
-          <p className="text-textSecondary max-w-2xl mx-auto">
+          <motion.span 
+            className="text-primary text-sm font-medium uppercase tracking-wider"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ delay: 0.2 }}
+          >
+            Credentials
+          </motion.span>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-textPrimary mb-4 mt-2">Certifications</h2>
+          <p className="text-textSecondary max-w-2xl mx-auto text-base sm:text-lg">
             Professional certifications in Automation and AI.
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <motion.div 
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8"
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+        >
           {certifications.map((cert, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              viewport={{ once: true }}
-              className="bg-card rounded-lg overflow-hidden border border-white/5 hover:border-primary/50 transition-all duration-300 group"
-            >
-              <div className="h-48 overflow-hidden bg-white p-4 relative flex items-center justify-center">
-                {cert.image ? (
-                  <img 
-                    src={cert.image} 
-                    alt={cert.title} 
-                    className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500" 
-                  />
-                ) : (
-                  <div className="text-6xl">
-                      🏆
-                  </div>
-                )}
-                <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                  <a 
-                    href={cert.link} 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="px-6 py-2 bg-primary text-background font-bold rounded-full transform scale-0 group-hover:scale-100 transition-transform duration-300"
-                  >
-                    View Credential
-                  </a>
-                </div>
-              </div>
-              <div className="p-6 text-center">
-                <h3 className="text-lg font-bold text-textPrimary mb-2">{cert.title}</h3>
-                <p className="text-primary text-sm font-medium mb-2">{cert.issuer}</p>
-                <p className="text-textSecondary text-xs">{cert.date}</p>
-              </div>
-            </motion.div>
+            <CertCard key={index} cert={cert} index={index} />
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
+  );
+};
+
+const CertCard = ({ cert, index }) => {
+  const [isHovered, setIsHovered] = useState(false);
+  const cardRef = useRef(null);
+
+  const cardVariants = {
+    hidden: { opacity: 0, y: 50, rotateX: -15 },
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      rotateX: 0,
+      transition: { duration: 0.6, ease: "easeOut" }
+    }
+  };
+
+  return (
+    <motion.div
+      ref={cardRef}
+      variants={cardVariants}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      whileHover={{ y: -10, transition: { duration: 0.3 } }}
+      className="bg-card rounded-xl overflow-hidden border border-white/5 hover:border-primary/50 transition-all duration-300 group relative"
+    >
+      {/* Shine effect */}
+      <motion.div
+        className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-x-full"
+        animate={isHovered ? { translateX: '200%' } : { translateX: '-100%' }}
+        transition={{ duration: 0.8, ease: "easeInOut" }}
+      />
+      
+      <div className="h-44 sm:h-48 overflow-hidden bg-white p-4 relative flex items-center justify-center">
+        {cert.image ? (
+          <motion.img 
+            src={cert.image} 
+            alt={cert.title} 
+            className="w-full h-full object-contain"
+            animate={isHovered ? { scale: 1.1 } : { scale: 1 }}
+            transition={{ duration: 0.5 }}
+          />
+        ) : (
+          <div className="text-6xl">🏆</div>
+        )}
+        
+        {/* Overlay */}
+        <motion.div 
+          className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent flex items-center justify-center"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: isHovered ? 1 : 0 }}
+          transition={{ duration: 0.3 }}
+        >
+          <motion.a 
+            href={cert.link} 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="px-6 py-2 bg-primary text-background font-bold rounded-full hover:bg-primary/90 transition-colors"
+            initial={{ y: 20, opacity: 0 }}
+            animate={{ y: isHovered ? 0 : 20, opacity: isHovered ? 1 : 0 }}
+            transition={{ duration: 0.3, delay: 0.1 }}
+          >
+            View Credential
+          </motion.a>
+        </motion.div>
+      </div>
+      
+      <div className="p-5 sm:p-6 text-center">
+        <h3 className="text-base sm:text-lg font-bold text-textPrimary mb-2 group-hover:text-primary transition-colors duration-300 line-clamp-2">
+          {cert.title}
+        </h3>
+        <motion.p 
+          className="text-primary text-sm font-medium mb-2"
+          animate={isHovered ? { scale: 1.05 } : { scale: 1 }}
+        >
+          {cert.issuer}
+        </motion.p>
+        <p className="text-textSecondary text-xs">{cert.date}</p>
+      </div>
+    </motion.div>
   );
 };
 

@@ -1,3 +1,4 @@
+import { useState, useRef } from 'react';
 import { motion } from 'framer-motion';
 
 const Projects = () => {
@@ -8,6 +9,7 @@ const Projects = () => {
       image: "/images/Consultaion_Solution_Architecture.png",
       link: "https://forum.uipath.com/t/agentic-consultation-management-process/2878370",
       tags: ["UiPath Agents", "Agentic AI", "Healthcare", "GenAI"],
+      icon: "🤖"
     },
     {
       title: "GenAI Email Management System",
@@ -15,6 +17,7 @@ const Projects = () => {
       image: null, 
       link: null, 
       tags: ["MERN Stack", "OpenAI API", "Graph API", "Hackathon"],
+      icon: "📧"
     },
     {
       title: "Food Rendezvous",
@@ -22,11 +25,31 @@ const Projects = () => {
       image: null,
       link: null,
       tags: ["Web Development", "Blogging", "React"],
+      icon: "🍲"
     },
   ];
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.15
+      }
+    }
+  };
+
+  const cardVariants = {
+    hidden: { opacity: 0, y: 50 },
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      transition: { duration: 0.6, ease: "easeOut" }
+    }
+  };
+
   return (
-    <section id="projects" className="py-20 bg-background">
+    <section id="projects" className="py-20 bg-background relative z-10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -35,68 +58,145 @@ const Projects = () => {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl font-bold text-textPrimary mb-4">My Projects</h2>
-          <p className="text-textSecondary max-w-2xl mx-auto">
-             Showcasing expertise in Agentic AI, GenAI, and Web Development.
+          <motion.span 
+            className="text-primary text-sm font-medium uppercase tracking-wider"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ delay: 0.2 }}
+          >
+            Portfolio
+          </motion.span>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-textPrimary mb-4 mt-2">My Projects</h2>
+          <p className="text-textSecondary max-w-2xl mx-auto text-base sm:text-lg">
+            Showcasing expertise in Agentic AI, GenAI, and Web Development.
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <motion.div 
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8"
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+        >
           {projects.map((project, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              viewport={{ once: true }}
-              className="bg-card rounded-lg overflow-hidden border border-white/5 hover:border-primary/50 transition-all duration-300 group hover:-translate-y-2"
+            <ProjectCard key={index} project={project} index={index} />
+          ))}
+        </motion.div>
+      </div>
+    </section>
+  );
+};
+
+// Separate component for 3D tilt effect
+const ProjectCard = ({ project, index }) => {
+  const cardRef = useRef(null);
+  const [rotate, setRotate] = useState({ x: 0, y: 0 });
+  const [isHovered, setIsHovered] = useState(false);
+
+  const handleMouseMove = (e) => {
+    if (!cardRef.current) return;
+    const rect = cardRef.current.getBoundingClientRect();
+    const centerX = rect.left + rect.width / 2;
+    const centerY = rect.top + rect.height / 2;
+    const rotateX = (e.clientY - centerY) / 20;
+    const rotateY = (centerX - e.clientX) / 20;
+    setRotate({ x: rotateX, y: rotateY });
+  };
+
+  const handleMouseLeave = () => {
+    setRotate({ x: 0, y: 0 });
+    setIsHovered(false);
+  };
+
+  const cardVariants = {
+    hidden: { opacity: 0, y: 50 },
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      transition: { duration: 0.6, ease: "easeOut" }
+    }
+  };
+
+  return (
+    <motion.div
+      ref={cardRef}
+      variants={cardVariants}
+      onMouseMove={handleMouseMove}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={handleMouseLeave}
+      style={{
+        transform: `perspective(1000px) rotateX(${rotate.x}deg) rotateY(${rotate.y}deg)`,
+        transformStyle: 'preserve-3d',
+      }}
+      className="bg-card rounded-xl overflow-hidden border border-white/5 hover:border-primary/50 transition-all duration-300 group"
+    >
+      {/* Glow effect */}
+      <div 
+        className={`absolute inset-0 bg-gradient-to-r from-primary/20 to-secondary/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-xl -z-10`}
+      />
+      
+      <div className="h-44 sm:h-48 overflow-hidden bg-gradient-to-br from-gray-800 to-gray-900 relative">
+        {project.image ? (
+          <img 
+            src={project.image} 
+            alt={project.title} 
+            className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" 
+          />
+        ) : (
+          <div className="w-full h-full flex items-center justify-center text-5xl sm:text-6xl bg-gradient-to-br from-card via-background to-card">
+            <motion.span
+              animate={isHovered ? { scale: 1.2, rotate: [0, -10, 10, 0] } : { scale: 1 }}
+              transition={{ duration: 0.5 }}
             >
-              <div className="h-48 overflow-hidden bg-gray-800 relative">
-                {project.image ? (
-                  <img 
-                    src={project.image} 
-                    alt={project.title} 
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" 
-                  />
-                ) : (
-                  <div className="w-full h-full flex items-center justify-center text-5xl bg-gradient-to-br from-card to-background">
-                    {index === 0 ? '🤖' : index === 1 ? '📧' : '🍲'}
-                  </div>
-                )}
-                <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                  {project.link && (
-                    <a 
-                      href={project.link} 
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                      className="px-6 py-2 bg-primary text-background font-bold rounded-full transform scale-0 group-hover:scale-100 transition-transform duration-300 delay-100"
-                    >
-                      View Project
-                    </a>
-                  )}
-                </div>
-              </div>
-              <div className="p-6">
-                <h3 className="text-xl font-bold text-textPrimary mb-2">{project.title}</h3>
-                <p className="text-textSecondary text-sm mb-4 line-clamp-3">
-                  {project.description}
-                </p>
-                <div className="flex flex-wrap gap-2">
-                  {project.tags.map((tag, tagIndex) => (
-                    <span 
-                      key={tagIndex} 
-                      className="text-xs font-medium text-primary bg-primary/10 px-2 py-1 rounded"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            </motion.div>
+              {project.icon}
+            </motion.span>
+          </div>
+        )}
+        
+        {/* Overlay */}
+        <motion.div 
+          className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent flex items-end justify-center pb-4"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: isHovered ? 1 : 0 }}
+          transition={{ duration: 0.3 }}
+        >
+          {project.link && (
+            <motion.a 
+              href={project.link} 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="px-6 py-2 bg-primary text-background font-bold rounded-full hover:bg-primary/90 transition-colors"
+              initial={{ y: 20, opacity: 0 }}
+              animate={{ y: isHovered ? 0 : 20, opacity: isHovered ? 1 : 0 }}
+              transition={{ duration: 0.3, delay: 0.1 }}
+            >
+              View Project
+            </motion.a>
+          )}
+        </motion.div>
+      </div>
+      
+      <div className="p-5 sm:p-6">
+        <h3 className="text-lg sm:text-xl font-bold text-textPrimary mb-2 group-hover:text-primary transition-colors duration-300">
+          {project.title}
+        </h3>
+        <p className="text-textSecondary text-sm mb-4 line-clamp-3">
+          {project.description}
+        </p>
+        <div className="flex flex-wrap gap-2">
+          {project.tags.map((tag, tagIndex) => (
+            <motion.span 
+              key={tagIndex} 
+              className="text-xs font-medium text-primary bg-primary/10 px-2 py-1 rounded-md border border-primary/20"
+              whileHover={{ scale: 1.05, backgroundColor: 'rgba(100, 255, 218, 0.2)' }}
+            >
+              {tag}
+            </motion.span>
           ))}
         </div>
       </div>
-    </section>
+    </motion.div>
   );
 };
 
