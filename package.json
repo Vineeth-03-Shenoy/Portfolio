@@ -2,7 +2,6 @@
   "name": "portfolio",
   "private": true,
   "version": "1.0.0",
-  "homepage": "https://vineeth-03-shenoy.github.io/Portfolio",
   "type": "module",
   "scripts": {
     "dev": "vite",

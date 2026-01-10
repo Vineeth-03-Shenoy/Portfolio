@@ -23,8 +23,12 @@ const Contact = () => {
     form.append('email', formData.email);
     form.append('Message', formData.Message);
 
-    fetch(scriptURL, { method: 'POST', body: form })
-      .then(response => {
+    fetch(scriptURL, { 
+      method: 'POST', 
+      body: form,
+      mode: 'no-cors'
+    })
+      .then(() => {
         setStatus('Message Sent Successfully!');
         setFormData({ Name: '', email: '', Message: '' });
         setTimeout(() => setStatus(''), 5000);
@@ -71,7 +75,7 @@ const Contact = () => {
               </div>
 
               <div className="pt-8">
-                <a href="Vineeth_Shenoy_P.pdf" download className="inline-block px-8 py-3 bg-card border border-primary text-primary hover:bg-primary hover:text-background rounded-md transition-all duration-300 font-medium">
+                <a href="/Vineeth_Shenoy_P.pdf" download className="inline-block px-8 py-3 bg-card border border-primary text-primary hover:bg-primary hover:text-background rounded-md transition-all duration-300 font-medium">
                   Download CV
                 </a>
               </div>

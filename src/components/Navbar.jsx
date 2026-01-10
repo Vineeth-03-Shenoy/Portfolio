@@ -5,6 +5,8 @@ import { motion, AnimatePresence } from 'framer-motion';
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
+  const toggleMenu = () => setIsOpen(!isOpen);
+
   const handleScroll = (e, targetId) => {
     e.preventDefault();
     const element = document.getElementById(targetId.substring(1)); // remove #

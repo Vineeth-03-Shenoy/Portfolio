@@ -63,7 +63,7 @@ const About = () => {
               <div className="absolute -inset-1 bg-gradient-to-r from-primary to-secondary rounded-lg blur opacity-25 group-hover:opacity-100 transition duration-1000 group-hover:duration-200"></div>
               <div className="relative w-72 h-80 sm:w-96 sm:h-[450px] bg-card rounded-lg overflow-hidden border border-white/10 shadow-2xl">
                  {/* Placeholder for user image */}
-                <div className="absolute inset-0 bg-cover bg-center opacity-80 group-hover:opacity-100 transition duration-500" style={{ backgroundImage: "url('images/user.jpg')" }}></div>
+                <div className="absolute inset-0 bg-cover bg-center opacity-80 group-hover:opacity-100 transition duration-500" style={{ backgroundImage: "url('/images/user.jpg')" }}></div>
                 <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent opacity-60"></div>
               </div>
             </div>
