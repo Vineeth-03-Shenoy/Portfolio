@@ -46,8 +46,12 @@ const Navbar = () => {
     e.preventDefault();
     const element = document.getElementById(targetId.substring(1));
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+      // Close menu first on mobile
       setIsOpen(false);
+      // Small delay to allow menu to close before scrolling
+      setTimeout(() => {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }, 100);
     }
   };
 
