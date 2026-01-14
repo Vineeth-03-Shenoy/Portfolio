@@ -4,6 +4,15 @@ import { motion } from 'framer-motion';
 const Projects = () => {
   const projects = [
     {
+      title: "Candi",
+      description: "An AI-powered interview preparation assistant that analyzes your resume and job description to generate a comprehensive interview prep guide.",
+      image: "/images/Candi_Logo.png",
+      link: "https://github.com/Vineeth-03-Shenoy/Candi.git",
+      tags: ["Interview Prep", "Gen AI", "Agentic AI", "Vibe Code with Brains"],
+      icon: "🎯",
+      status: "In Development"
+    },
+    {
       title: "Agentic Consultation Management",
       description: "An end-to-end Agentic Consultation Management process presented at GITEX 2025. Showcased UiPath's Agentic Capabilities to streamline the appointment booking-to-consultation process. This solution garnered health care client prospects for Novigo Solutions.",
       image: "/images/Consultaion_Solution_Architecture.png",
@@ -27,8 +36,8 @@ const Projects = () => {
       link: null,
       tags: ["Web Development", "Blogging", "React"],
       icon: "🍲",
-      status: "In Development"
-    },
+      status: "Development Halted"
+    }
   ];
 
   const containerVariants = {
