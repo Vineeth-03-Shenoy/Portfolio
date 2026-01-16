@@ -1,50 +1,14 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { aboutConfig } from '../data/about';
 
 const About = () => {
   const [activeTab, setActiveTab] = useState('skills');
 
   const tabContent = {
-    skills: [
-      {
-        title: "Automation",
-        desc: "UiPath Automation, UiPath Maestro, UiPath Agents",
-      },
-      {
-        title: "Languages",
-        desc: "Python, VB.NET, C#, JavaScript, C++, Java",
-      },
-      {
-        title: "Cloud & APIs",
-        desc: "Microsoft Azure, Graph API, OpenAI API, Outlook API",
-      },
-      {
-        title: "Tools",
-        desc: "UiPath Studio, VS Code",
-      },
-    ],
-    experience: [
-      {
-        title: "Software Engineer (Automation Developer)",
-        subtitle: "Novigo Solutions Pvt. Ltd.",
-        date: "Jun 2024 – Present",
-        desc: "Leading the Agentic Automation Center of Excellence. Developed Agentic Automation POCs, end-to-end Agentic Consultation Management process, and supported implementation for major clients like Abdul Latif Jameel Motors (Saudi Arabia).",
-      },
-    ],
-    education: [
-      {
-        title: "B.E. in Artificial Intelligence & Machine Learning",
-        subtitle: "St. Joseph Engineering College, Mangalore",
-        date: "Nov 2020 – Jun 2024",
-        desc: "CGPA: 8.65/10",
-      },
-      {
-        title: "Grade 12",
-        subtitle: "St Aloysius P.U. College, Mangalore",
-        date: "Jun 2018 – Mar 2020",
-        desc: "Percentage: 93.33%",
-      },
-    ],
+    skills: aboutConfig.skills,
+    experience: aboutConfig.experience,
+    education: aboutConfig.education,
   };
 
   return (
@@ -62,8 +26,7 @@ const About = () => {
             <div className="relative group">
               <div className="absolute -inset-1 bg-gradient-to-r from-primary to-secondary rounded-lg blur opacity-25 group-hover:opacity-100 transition duration-1000 group-hover:duration-200"></div>
               <div className="relative w-72 h-80 sm:w-96 sm:h-[450px] bg-card rounded-lg overflow-hidden border border-white/10 shadow-2xl">
-                 {/* Placeholder for user image */}
-                <div className="absolute inset-0 bg-cover bg-center opacity-80 group-hover:opacity-100 transition duration-500" style={{ backgroundImage: "url('/images/user.png')" }}></div>
+                <div className="absolute inset-0 bg-cover bg-center opacity-80 group-hover:opacity-100 transition duration-500" style={{ backgroundImage: `url('${aboutConfig.profileImage}')` }}></div>
               </div>
             </div>
           </motion.div>
@@ -77,10 +40,7 @@ const About = () => {
           >
             <h2 className="text-4xl font-bold mb-6 text-textPrimary">About Me</h2>
             <p className="text-textSecondary text-lg mb-8 leading-relaxed">
-              Software Engineer at Novigo Solutions specializing in Robotic Process Automation (RPA) and Agentic Automation. 
-              Experienced in designing scalable, AI-driven automation solutions and Proof-of-Concepts (POCs) using UiPath products, 
-              delivering measurable value to clients. Leading the Agentic Automation Center of Excellence and actively contributing 
-              solutions to the UiPath Community.
+              {aboutConfig.bio}
             </p>
 
             {/* Tabs */}

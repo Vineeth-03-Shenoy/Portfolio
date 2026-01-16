@@ -119,7 +119,7 @@ const Community = () => {
                 />
                 
                 <img 
-                  src="/images/v_roboto_v.png" 
+                  src="/images/profile/v_roboto_v.png" 
                   alt="UiPath Community Analytics - V_Roboto_V" 
                   className="w-full h-auto rounded-xl shadow-2xl"
                 />
