@@ -41,7 +41,7 @@ const Projects = () => {
           >
             Portfolio
           </motion.span>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-textPrimary mb-4 mt-2">My Projects</h2>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-textPrimary mb-4 mt-2">Personal Projects</h2>
           <p className="text-textSecondary max-w-2xl mx-auto text-base sm:text-lg">
             Showcasing expertise in Agentic AI, GenAI, and Web Development.
           </p>

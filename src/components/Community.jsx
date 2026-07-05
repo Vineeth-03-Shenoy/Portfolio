@@ -4,10 +4,14 @@ import { motion, useMotionValue } from 'framer-motion';
 const Community = () => {
   const containerRef = useRef(null);
   const [isHovered, setIsHovered] = useState(false);
-  
+  const mvpContainerRef = useRef(null);
+  const [isMvpHovered, setIsMvpHovered] = useState(false);
+
   // Mouse tracking for spotlight effect
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
+  const mvpMouseX = useMotionValue(0);
+  const mvpMouseY = useMotionValue(0);
 
   const handleMouseMove = (e) => {
     if (!containerRef.current) return;
@@ -16,14 +20,17 @@ const Community = () => {
     mouseY.set(e.clientY - rect.top);
   };
 
+  const handleMvpMouseMove = (e) => {
+    if (!mvpContainerRef.current) return;
+    const rect = mvpContainerRef.current.getBoundingClientRect();
+    mvpMouseX.set(e.clientX - rect.left);
+    mvpMouseY.set(e.clientY - rect.top);
+  };
+
   // Floating animation keyframes
   const floatAnimation = {
     y: [0, -15, 0],
-    transition: {
-      duration: 4,
-      repeat: Infinity,
-      ease: "easeInOut"
-    }
+    transition: { duration: 4, repeat: Infinity, ease: "easeInOut" }
   };
 
   return (
@@ -62,44 +69,101 @@ const Community = () => {
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-textPrimary mb-4 mt-2">
             Community Contribution
           </h2>
-          <p className="text-textSecondary max-w-2xl mx-auto text-base sm:text-lg">
-            Actively contributing to the UiPath Community, sharing knowledge and helping fellow developers.
-          </p>
         </motion.div>
 
-        {/* Analytics Card */}
+        {/* Analytics Card - commented out, preserved for future use */}
+        {false && (
         <motion.div
-          ref={containerRef}
-          onMouseMove={handleMouseMove}
-          onMouseEnter={() => setIsHovered(true)}
-          onMouseLeave={() => setIsHovered(false)}
+          ref={null}
+          onMouseMove={null}
+          onMouseEnter={null}
+          onMouseLeave={null}
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
           viewport={{ once: true }}
           className="relative max-w-4xl mx-auto"
         >
-          {/* Animated border gradient */}
-          <motion.div 
+          <motion.div
             className="absolute -inset-1 rounded-2xl bg-gradient-to-r from-primary via-secondary to-primary opacity-75 blur-sm"
-            animate={{ 
-              backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'],
-            }}
+            animate={{ backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'] }}
             transition={{ duration: 5, repeat: Infinity, ease: "linear" }}
             style={{ backgroundSize: '200% 200%' }}
           />
-          
-          {/* Card container */}
-          <motion.div 
+          <motion.div
             className="relative bg-card/95 backdrop-blur-sm rounded-2xl overflow-hidden border border-white/10"
-            animate={floatAnimation}
+            animate={{ y: [0, -15, 0], transition: { duration: 4, repeat: Infinity, ease: "easeInOut" } }}
+          >
+            <div className="p-4 sm:p-6 lg:p-8">
+              <motion.div className="relative overflow-hidden rounded-xl" whileHover={{ scale: 1.02 }} transition={{ duration: 0.4 }}>
+                <img src="/images/profile/v_roboto_v.png" alt="UiPath Community Analytics - V_Roboto_V" className="w-full h-auto rounded-xl shadow-2xl" />
+              </motion.div>
+              <motion.div className="mt-6 sm:mt-8 text-center" initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} transition={{ delay: 0.5 }}>
+                <motion.a
+                  href="https://forum.uipath.com/u/v_roboto_v/summary"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-primary to-secondary text-background font-bold rounded-full hover:shadow-lg hover:shadow-primary/25 transition-all duration-300"
+                  whileHover={{ scale: 1.05, y: -3 }}
+                  whileTap={{ scale: 0.98 }}
+                >
+                  <span>🤖</span>
+                  Visit My Forum Profile
+                  <motion.svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" animate={{ x: [0, 5, 0] }} transition={{ duration: 1.5, repeat: Infinity }}>
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                  </motion.svg>
+                </motion.a>
+              </motion.div>
+            </div>
+            <motion.div className="grid grid-cols-2 sm:grid-cols-4 gap-4 px-4 sm:px-6 lg:px-8 pb-6 sm:pb-8" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ delay: 0.3, duration: 0.5 }}>
+              {[
+                { label: "Solutions Given", value: "71", icon: "💡" },
+                { label: "Replies Posted", value: "444", icon: "💬" },
+                { label: "Likes Received", value: "253", icon: "❤️" },
+                { label: "Academy Courses", value: "93", icon: "🎓" },
+              ].map((stat, index) => (
+                <motion.div key={stat.label} className="bg-background/50 rounded-xl p-4 text-center border border-white/5 hover:border-primary/30 transition-colors" whileHover={{ y: -5 }} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 * index }}>
+                  <span className="text-2xl block mb-1">{stat.icon}</span>
+                  <span className="text-2xl sm:text-3xl font-bold text-primary block">{stat.value}</span>
+                  <span className="text-xs sm:text-sm text-textSecondary">{stat.label}</span>
+                </motion.div>
+              ))}
+            </motion.div>
+          </motion.div>
+        </motion.div>
+        )}
+
+        {/* UiPath MVP 2026 Card */}
+        <motion.div
+          ref={mvpContainerRef}
+          onMouseMove={handleMvpMouseMove}
+          onMouseEnter={() => setIsMvpHovered(true)}
+          onMouseLeave={() => setIsMvpHovered(false)}
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
+          viewport={{ once: true }}
+          className="relative max-w-4xl mx-auto mt-10"
+        >
+          {/* Animated border gradient */}
+          <motion.div
+            className="absolute -inset-1 rounded-2xl bg-gradient-to-r from-primary via-secondary to-primary opacity-75 blur-sm"
+            animate={{ backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'] }}
+            transition={{ duration: 5, repeat: Infinity, ease: "linear" }}
+            style={{ backgroundSize: '200% 200%' }}
+          />
+
+          {/* Card container */}
+          <motion.div
+            className="relative bg-card/95 backdrop-blur-sm rounded-2xl overflow-hidden border border-white/10"
+            animate={{ y: [0, -15, 0], transition: { duration: 4, repeat: Infinity, ease: "easeInOut" } }}
           >
             {/* Spotlight effect */}
             <motion.div
               className="absolute inset-0 pointer-events-none"
               style={{
-                background: isHovered 
-                  ? `radial-gradient(600px circle at ${mouseX.get()}px ${mouseY.get()}px, rgba(100, 255, 218, 0.1), transparent 40%)`
+                background: isMvpHovered
+                  ? `radial-gradient(600px circle at ${mvpMouseX.get()}px ${mvpMouseY.get()}px, rgba(100, 255, 218, 0.1), transparent 40%)`
                   : 'none'
               }}
             />
@@ -114,26 +178,36 @@ const Community = () => {
                 {/* Shimmer effect */}
                 <motion.div
                   className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full z-10"
-                  animate={isHovered ? { translateX: '200%' } : {}}
+                  animate={isMvpHovered ? { translateX: '200%' } : {}}
                   transition={{ duration: 1, ease: "easeInOut" }}
                 />
-                
-                <img 
-                  src="/images/profile/v_roboto_v.png" 
-                  alt="UiPath Community Analytics - V_Roboto_V" 
+
+                <img
+                  src="/images/profile/UiPath_MVP_FB_LI_1200x628.png"
+                  alt="UiPath Community MVP 2026 - Vineeth Shenoy P"
                   className="w-full h-auto rounded-xl shadow-2xl"
                 />
               </motion.div>
-              
+
+              {/* Description */}
+              <motion.p
+                className="mt-5 text-center text-textSecondary text-sm sm:text-base max-w-2xl mx-auto"
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                transition={{ delay: 0.4 }}
+              >
+                Recognized as a <span className="text-primary font-semibold">UiPath Community MVP 2026</span> for contributions to the UiPath ecosystem through knowledge sharing, community support, and advancing automation excellence.
+              </motion.p>
+
               {/* CTA Button */}
-              <motion.div 
+              <motion.div
                 className="mt-6 sm:mt-8 text-center"
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
                 transition={{ delay: 0.5 }}
               >
                 <motion.a
-                  href="https://forum.uipath.com/u/v_roboto_v/summary"
+                  href="https://www.credential.net/38db7199-444d-445f-ad1e-f67068433063"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-primary to-secondary text-background font-bold rounded-full hover:shadow-lg hover:shadow-primary/25 transition-all duration-300"
@@ -144,14 +218,14 @@ const Community = () => {
                     animate={{ rotate: [0, 10, -10, 0] }}
                     transition={{ duration: 2, repeat: Infinity, delay: 1 }}
                   >
-                    🤖
+                    🏆
                   </motion.span>
-                  Visit My Forum Profile
-                  <motion.svg 
-                    xmlns="http://www.w3.org/2000/svg" 
-                    className="h-5 w-5" 
-                    fill="none" 
-                    viewBox="0 0 24 24" 
+                  View My MVP Credential
+                  <motion.svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-5 w-5"
+                    fill="none"
+                    viewBox="0 0 24 24"
                     stroke="currentColor"
                     animate={{ x: [0, 5, 0] }}
                     transition={{ duration: 1.5, repeat: Infinity }}
@@ -161,42 +235,9 @@ const Community = () => {
                 </motion.a>
               </motion.div>
             </div>
-
-            {/* Stats highlights */}
-            <motion.div 
-              className="grid grid-cols-2 sm:grid-cols-4 gap-4 px-4 sm:px-6 lg:px-8 pb-6 sm:pb-8"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3, duration: 0.5 }}
-            >
-              {[
-                { label: "Solutions Given", value: "71", icon: "💡" },
-                { label: "Replies Posted", value: "444", icon: "💬" },
-                { label: "Likes Received", value: "253", icon: "❤️" },
-                { label: "Academy Courses", value: "93", icon: "🎓" },
-              ].map((stat, index) => (
-                <motion.div
-                  key={stat.label}
-                  className="bg-background/50 rounded-xl p-4 text-center border border-white/5 hover:border-primary/30 transition-colors"
-                  whileHover={{ y: -5, backgroundColor: 'rgba(100, 255, 218, 0.05)' }}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.1 * index }}
-                >
-                  <motion.span 
-                    className="text-2xl block mb-1"
-                    animate={{ scale: [1, 1.1, 1] }}
-                    transition={{ duration: 2, repeat: Infinity, delay: index * 0.3 }}
-                  >
-                    {stat.icon}
-                  </motion.span>
-                  <span className="text-2xl sm:text-3xl font-bold text-primary block">{stat.value}</span>
-                  <span className="text-xs sm:text-sm text-textSecondary">{stat.label}</span>
-                </motion.div>
-              ))}
-            </motion.div>
           </motion.div>
         </motion.div>
+
       </div>
     </section>
   );

@@ -14,9 +14,9 @@ const Home = () => {
       <ScrollProgress />
       <Hero />
       <About />
+      <Community />
       <Projects />
       <Certifications />
-      <Community />
       <Contact />
     </main>
   );

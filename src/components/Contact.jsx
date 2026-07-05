@@ -5,7 +5,8 @@ const Contact = () => {
   const [formData, setFormData] = useState({
     Name: '',
     email: '',
-    Message: ''
+    Message: '',
+    website: '' // honeypot - left empty by real users, filled by bots
   });
   const [status, setStatus] = useState('');
 
@@ -13,30 +14,26 @@ const Contact = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setStatus('Sending...');
 
-    const scriptURL = 'https://script.google.com/macros/s/AKfycbzcDy00MLE-qbMT8cV4s3sGpG0Jgcv5GZMCgB-NmgCbygoWiYMf8j3afRZtOq7iM4Zzrg/exec';
-    const form = new FormData();
-    form.append('Name', formData.Name);
-    form.append('email', formData.email);
-    form.append('Message', formData.Message);
-
-    fetch(scriptURL, { 
-      method: 'POST', 
-      body: form,
-      mode: 'no-cors'
-    })
-      .then(() => {
-        setStatus('Message Sent Successfully!');
-        setFormData({ Name: '', email: '', Message: '' });
-        setTimeout(() => setStatus(''), 5000);
-      })
-      .catch(error => {
-        console.error('Error!', error.message);
-        setStatus('Error sending message.');
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
       });
+
+      if (!res.ok) throw new Error('Request failed');
+
+      setStatus('Message Sent Successfully!');
+      setFormData({ Name: '', email: '', Message: '', website: '' });
+      setTimeout(() => setStatus(''), 5000);
+    } catch (error) {
+      console.error('Error!', error.message);
+      setStatus('Error sending message. Please try again.');
+    }
   };
 
   return (
@@ -85,9 +82,19 @@ const Contact = () => {
           {/* Contact Form */}
           <div>
             <form onSubmit={handleSubmit} className="space-y-4">
-              <input 
-                type="text" 
-                name="Name" 
+              <input
+                type="text"
+                name="website"
+                value={formData.website}
+                onChange={handleChange}
+                tabIndex="-1"
+                autoComplete="off"
+                aria-hidden="true"
+                className="absolute -left-[9999px] w-px h-px opacity-0"
+              />
+              <input
+                type="text"
+                name="Name"
                 value={formData.Name}
                 onChange={handleChange}
                 placeholder="Your Name" 

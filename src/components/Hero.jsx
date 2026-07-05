@@ -3,9 +3,10 @@ import Typewriter from './Typewriter';
 
 const Hero = () => {
   const roles = [
-    "Agentic AI Developer",
-    "RPA Specialist", 
-    "UiPath Expert",
+    "UiPath MVP 2026",
+    "Agentic AI Consultant",
+    "LangGraph Engineer",
+    "RPA Specialist",
     "Automation Architect"
   ];
 
@@ -33,7 +34,7 @@ const Hero = () => {
               transition={{ delay: 0.2, duration: 0.5 }}
               className="inline-block px-4 py-2 bg-primary/10 border border-primary/30 rounded-full mb-4"
             >
-              <span className="text-primary text-sm font-medium">Software Engineer - Agentic AI CoE</span>
+              <span className="text-primary text-sm font-medium">Senior Software Engineer - Agentic AI Consultant</span>
             </motion.div>
             
             <h1 className="text-4xl sm:text-5xl lg:text-7xl font-bold text-textPrimary mb-4 tracking-tight">
@@ -47,7 +48,7 @@ const Hero = () => {
             </div>
             
             <p className="text-textSecondary text-base sm:text-lg max-w-lg mb-8 leading-relaxed mx-auto md:mx-0">
-              Software Engineer at Novigo Solutions specializing in Robotic Process Automation (RPA) and Agentic Automation. Experienced in designing scalable, AI-driven automation solutions.
+              UiPath MVP 2026 and Senior Software Engineer at Novigo Solutions, building production-grade agentic AI platforms with LangGraph, UiPath Maestro BPMN, and Gemini. Delivering governed multi-agent systems, full-stack backends, and enterprise automation pipelines with measurable ROI.
             </p>
             
             <motion.div
