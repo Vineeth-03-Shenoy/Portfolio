@@ -1,6 +1,4 @@
 export const aboutConfig = {
-  profileImage: "/images/profile/user.png",
-
   bio: `UiPath MVP 2026 (Agentic Automation) and Senior Software Engineer at Novigo Solutions, building production-grade agentic AI platforms with LangGraph, UiPath Maestro BPMN, and Gemini. Delivered governed multi-agent systems, full-stack backends (GCP, FastAPI, React 18, PostgreSQL), and enterprise automation pipelines with measurable ROI. Responsible AI practitioner using Claude Code with CLAUDE.md governance; holder of 4 UiPath certifications and active UiPath Community contributor.`,
 
   skills: [
