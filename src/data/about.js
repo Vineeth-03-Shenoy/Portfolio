@@ -1,22 +1,26 @@
 export const aboutConfig = {
-  bio: `UiPath MVP 2026 (Agentic Automation) and Senior Software Engineer at Novigo Solutions, building production-grade agentic AI platforms with LangGraph, UiPath Maestro BPMN, and Gemini. Delivered governed multi-agent systems, full-stack backends (GCP, FastAPI, React 18, PostgreSQL), and enterprise automation pipelines with measurable ROI. Responsible AI practitioner using Claude Code with CLAUDE.md governance; holder of 4 UiPath certifications and active UiPath Community contributor.`,
+  bio: `Senior Software Engineer and Agentic AI Consultant specializing in enterprise AI, intelligent automation, and solution architecture. Technical lead for a 3-engineer team, driving architecture, backend engineering, workflow orchestration, SAP integration, and production delivery for an enterprise AP automation platform. Experienced across AI/agentic systems, backend engineering, data platforms, enterprise integration, and automation, building governed AI workflows and multi-agent systems for business processes. Experienced in POCs, technical solutioning, customer-facing demonstrations, and AI-assisted software development using coding assistants such as Claude to accelerate implementation, testing, and problem solving.`,
 
   skills: [
     {
-      title: "Automation",
-      desc: "UiPath Automation, UiPath Maestro, UiPath Agents, UiPath Data Fabric, UiPath Agent Builder, UiPath Action Center",
+      title: "AI & Agentic Systems",
+      desc: "LLMs, RAG, Multi-Agent Systems, LangGraph, LangChain, Snowflake Cortex, OpenAI API, Gemini API, Ollama",
     },
     {
-      title: "Languages & Frameworks",
-      desc: "Python, FastAPI, React 18, TypeScript, SQLAlchemy, LangChain, LangGraph, Prefect, RapidFuzz, C#.NET, VB.NET, JavaScript, C++, Java",
+      title: "Software Engineering",
+      desc: "Python, FastAPI, React 18, TypeScript, SQL, SQLAlchemy, Pydantic, Prefect, C#.NET, VB.NET, JavaScript",
     },
     {
-      title: "Cloud, APIs & Tools",
-      desc: "GCP (Cloud SQL, Cloud Run), Microsoft Azure, Azure Document Intelligence, Gemini API, OpenAI API, Qdrant, Ollama, Graph API, PostgreSQL, VS Code, UiPath Studio, Claude Code",
+      title: "Data & Cloud",
+      desc: "Snowflake, PostgreSQL, Qdrant, Azure Document Intelligence, GCP, Graph API",
     },
     {
-      title: "Soft Skills",
-      desc: "Client Interaction, Analytical Thinking, Agile Work Practices, Presentation Skills, Time Management",
+      title: "Enterprise Automation",
+      desc: "UiPath (Agents, Maestro, Data Fabric, Action Center), SAP Integration",
+    },
+    {
+      title: "Engineering Tools",
+      desc: "Claude Code, Git, Terraform, pytest, VS Code",
     },
   ],
 
@@ -25,7 +29,7 @@ export const aboutConfig = {
       title: "Senior Software Engineer (Agentic AI Consultant)",
       subtitle: "Novigo Solutions Pvt. Ltd.",
       date: "Jun 2024 – Present",
-      desc: "Building production-grade agentic AI platforms: APStudio (GCP, FastAPI, React 18, PostgreSQL) with 13+ Gemini agents achieving $0.0012/invoice LLM cost and 95% straight-through processing; a governed LangGraph call-center analytics pipeline; and enterprise UiPath RPA automation reducing 50+ manual hours to minutes. UiPath Hackathon 2026 participant.",
+      desc: "Building production-grade AI and automation platforms across agentic systems, backend engineering, data platforms, and enterprise integration. Technical lead for APStudio, an SAP-integrated AP invoice automation platform, owning architecture, backend, workflow orchestration, SAP integration, frontend, and production delivery. Also built governed LangGraph and UiPath-based AI solutions for call-center analytics and enterprise automation, with experience in POCs, customer solutioning, and pre-sales demonstrations.",
     },
   ],
 

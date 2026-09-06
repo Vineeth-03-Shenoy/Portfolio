@@ -1,14 +1,16 @@
+/* eslint-disable no-unused-vars */
 import { motion } from 'framer-motion';
 import Typewriter from './Typewriter';
 
 const Hero = () => {
   const roles = [
-    "UiPath MVP 2026",
+    "Senior Software Engineer",
     "Agentic AI Consultant",
-    "LangGraph Engineer",
-    "RPA Specialist",
-    "Automation Architect"
+    "AI Solution Architect",
+    "Technical Lead",
+    "AI Automation Engineer",
   ];
+
 
   const handleScroll = (e, targetId) => {
     e.preventDefault();
@@ -34,7 +36,7 @@ const Hero = () => {
               transition={{ delay: 0.2, duration: 0.5 }}
               className="inline-block px-4 py-2 bg-primary/10 border border-primary/30 rounded-full mb-4"
             >
-              <span className="text-primary text-sm font-medium">Senior Software Engineer - Agentic AI Consultant</span>
+              <span className="text-primary text-sm font-medium">Senior Software Engineer (Agentic AI Consultant)</span>
             </motion.div>
             
             <h1 className="text-4xl sm:text-5xl lg:text-7xl font-bold text-textPrimary mb-4 tracking-tight">
@@ -48,7 +50,7 @@ const Hero = () => {
             </div>
             
             <p className="text-textSecondary text-base sm:text-lg max-w-lg mb-8 leading-relaxed mx-auto md:mx-0">
-              UiPath MVP 2026 and Senior Software Engineer at Novigo Solutions, building production-grade agentic AI platforms with LangGraph, UiPath Maestro BPMN, and Gemini. Delivering governed multi-agent systems, full-stack backends, and enterprise automation pipelines with measurable ROI.
+              Senior Software Engineer at Novigo Solutions, building production-grade AI and automation platforms across agentic systems, backend engineering, data platforms, and enterprise integration. Designing governed multi-agent workflows, full-stack applications, and intelligent automation solutions that turn complex business processes into scalable systems.
             </p>
             
             <motion.div
