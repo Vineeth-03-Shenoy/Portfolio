@@ -38,7 +38,7 @@ export const aboutConfig = {
       title: "B.E. in Artificial Intelligence & Machine Learning",
       subtitle: "St. Joseph Engineering College, Mangalore",
       date: "Nov 2020 – Jun 2024",
-      desc: "CGPA: 8.65/10",
+      desc: "CGPA: 8.57/10",
     },
     {
       title: "Grade 12",
