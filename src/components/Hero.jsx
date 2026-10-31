@@ -67,12 +67,20 @@ const Hero = () => {
                 <span className="relative z-10">View Work</span>
                 <div className="absolute inset-0 bg-primary transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
               </a>
-              <a 
+              <a
                 href="#contact"
                 onClick={(e) => handleScroll(e, 'contact')}
                 className="group px-8 py-3 bg-primary text-background hover:bg-primary/90 rounded-lg transition-all duration-300 font-medium transform hover:-translate-y-1 hover:shadow-lg hover:shadow-primary/25"
               >
                 Contact Me
+              </a>
+              <a
+                href="/Vineeth_Shenoy_P.pdf"
+                download
+                className="group px-8 py-3 bg-transparent border-2 border-secondary text-secondary hover:bg-secondary hover:text-background rounded-lg transition-all duration-300 font-medium relative overflow-hidden"
+              >
+                <span className="relative z-10">Download Resume</span>
+                <div className="absolute inset-0 bg-secondary transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
               </a>
             </motion.div>
           </motion.div>
