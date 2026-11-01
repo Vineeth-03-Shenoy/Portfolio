@@ -1,5 +1,5 @@
 export const aboutConfig = {
-  bio: `Senior Software Engineer and Agentic AI Consultant specializing in enterprise AI, intelligent automation, and solution architecture. Technical lead for a 3-engineer team, driving architecture, backend engineering, workflow orchestration, SAP integration, and production delivery for an enterprise AP automation platform. Experienced across AI/agentic systems, backend engineering, data platforms, enterprise integration, and automation, building governed AI workflows and multi-agent systems for business processes. Experienced in POCs, technical solutioning, customer-facing demonstrations, and AI-assisted software development using coding assistants such as Claude to accelerate implementation, testing, and problem solving.`,
+  bio: `Senior Software Engineer and Agentic AI Consultant at Novigo Solutions, specializing in enterprise AI, intelligent automation, and solution architecture. I build governed multi-agent systems and production AI platforms that turn complex business processes into scalable, measurable outcomes, leading customer-facing POCs and solutioning while using AI-assisted development with Claude Code to move faster without compromising engineering rigor.`,
 
   skills: [
     {
@@ -26,10 +26,34 @@ export const aboutConfig = {
 
   experience: [
     {
-      title: "Senior Software Engineer (Agentic AI Consultant)",
-      subtitle: "Novigo Solutions Pvt. Ltd.",
-      date: "Jun 2024 – Present",
-      desc: "Building production-grade AI and automation platforms across agentic systems, backend engineering, data platforms, and enterprise integration. Technical lead for APStudio, an SAP-integrated AP invoice automation platform, owning architecture, backend, workflow orchestration, SAP integration, frontend, and production delivery. Also built governed LangGraph and UiPath-based AI solutions for call-center analytics and enterprise automation, with experience in POCs, customer solutioning, and pre-sales demonstrations.",
+      company: "Novigo Solutions Pvt. Ltd.",
+      type: "Full-time",
+      duration: "2 yrs 6 mos",
+      location: "Mangaluru, Karnataka, India",
+      roles: [
+        {
+          title: "Senior Software Engineer (Agentic AI Consultant)",
+          date: "Jul 2026 – Present · 5 mos",
+          location: "On-site",
+          bullets: [
+            "Developed an end-to-end Invoice Management process for a major client in the Middle East using UiPath Maestro Flow, cutting per-invoice processing time by ~99% and delivering the flow in just 1 week with Claude Code.",
+            "Technical lead for a 3-engineer team, driving architecture, backend engineering, workflow orchestration, SAP integration, frontend development, code reviews, and production delivery for an enterprise AP automation platform.",
+            "Building production-grade AI and automation systems across Python, FastAPI, React, Snowflake, LangGraph, LLMs, and RAG, with a focus on governed multi-agent workflows and scalable architecture.",
+            "Led the re-architecture of the AP automation platform from PostgreSQL to Snowflake, engineering 21 governed LLM agents behind a unified guardrail kernel with PII protection, budget controls, audit tracing, and human-in-the-loop capabilities.",
+          ],
+        },
+        {
+          title: "Software Engineer",
+          date: "Jun 2024 – Jul 2026 · 2 yrs 2 mos",
+          bullets: [
+            "Designed and delivered UiPath-based automations for enterprise Finance processes, including production enhancements, change requests, bug fixes, UAT, and Hypercare support.",
+            "Contributed to Agentic Automation Center of Excellence initiatives, building and showcasing POCs using UiPath Agent Builder, GPT-4o, and UiPath Maestro for intelligent business workflows.",
+            "Developed AI and automation POCs across healthcare, document processing, and enterprise support workflows, translating business requirements into practical technical solutions.",
+            "Contributed 70+ published solutions to the UiPath Community Forum and actively shared technical knowledge with peers and customers.",
+            "Recognized with the \"Novigo Rising Star\" award for innovation and impact (Jan–Mar 2025).",
+          ],
+        },
+      ],
     },
   ],
 

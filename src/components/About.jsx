@@ -64,7 +64,6 @@ const About = () => {
 
   const tabContent = {
     skills: aboutConfig.skills,
-    experience: aboutConfig.experience,
     education: aboutConfig.education,
   };
 
@@ -113,7 +112,7 @@ const About = () => {
 
             {/* Tabs */}
             <div className="flex space-x-8 mb-8 border-b border-white/10 pb-2">
-              {Object.keys(tabContent).map((tab) => (
+              {['skills', 'experience', 'education'].map((tab) => (
                 <button
                   key={tab}
                   onClick={() => setActiveTab(tab)}
@@ -142,26 +141,65 @@ const About = () => {
                   exit={{ opacity: 0, y: -10 }}
                   transition={{ duration: 0.3 }}
                 >
-                  <ul className="space-y-6">
-                    {tabContent[activeTab].map((item, index) => (
-                      <li key={index} className="group">
-                        <span className="text-primary font-bold text-lg block mb-1 group-hover:translate-x-1 transition-transform duration-300 inline-block">
-                          {item.title}
-                        </span>
-                        {item.subtitle && (
-                           <span className="block text-textSecondary text-sm mb-1">{item.subtitle}</span>
-                        )}
-                        {item.date && (
-                           <span className="block text-textSecondary text-xs italic mb-2">{item.date}</span>
-                        )}
-                        {item.desc && (
-                          <p className="text-textSecondary group-hover:text-textPrimary transition-colors duration-300">
-                            {item.desc}
-                          </p>
-                        )}
-                      </li>
-                    ))}
-                  </ul>
+                  {activeTab === 'experience' ? (
+                    <div className="space-y-8">
+                      {aboutConfig.experience.map((company, cIndex) => (
+                        <div key={cIndex}>
+                          <span className="text-primary font-bold text-lg block mb-1">
+                            {company.company}
+                          </span>
+                          <span className="block text-textSecondary text-sm mb-1">
+                            {company.type}{company.duration ? ` · ${company.duration}` : ''}
+                          </span>
+                          {company.location && (
+                            <span className="block text-textSecondary text-xs italic mb-4">{company.location}</span>
+                          )}
+
+                          <div className="relative border-l border-white/10 pl-6 space-y-6">
+                            {company.roles.map((role, rIndex) => (
+                              <div key={rIndex} className="relative group">
+                                <span className="absolute -left-[29px] top-1.5 w-2.5 h-2.5 rounded-full bg-primary" />
+                                <span className="text-textPrimary font-semibold text-base block group-hover:translate-x-1 transition-transform duration-300">
+                                  {role.title}
+                                </span>
+                                <span className="block text-textSecondary text-xs italic mb-2">
+                                  {role.date}{role.location ? ` · ${role.location}` : ''}
+                                </span>
+                                <ul className="list-disc list-outside ml-4 space-y-1.5">
+                                  {role.bullets.map((bullet, bIndex) => (
+                                    <li key={bIndex} className="text-textSecondary text-sm group-hover:text-textPrimary transition-colors duration-300">
+                                      {bullet}
+                                    </li>
+                                  ))}
+                                </ul>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  ) : (
+                    <ul className="space-y-6">
+                      {tabContent[activeTab].map((item, index) => (
+                        <li key={index} className="group">
+                          <span className="text-primary font-bold text-lg block mb-1 group-hover:translate-x-1 transition-transform duration-300 inline-block">
+                            {item.title}
+                          </span>
+                          {item.subtitle && (
+                             <span className="block text-textSecondary text-sm mb-1">{item.subtitle}</span>
+                          )}
+                          {item.date && (
+                             <span className="block text-textSecondary text-xs italic mb-2">{item.date}</span>
+                          )}
+                          {item.desc && (
+                            <p className="text-textSecondary group-hover:text-textPrimary transition-colors duration-300">
+                              {item.desc}
+                            </p>
+                          )}
+                        </li>
+                      ))}
+                    </ul>
+                  )}
                 </motion.div>
               </AnimatePresence>
             </div>

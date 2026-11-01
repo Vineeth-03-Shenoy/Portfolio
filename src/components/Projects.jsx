@@ -41,9 +41,9 @@ const Projects = () => {
           >
             Portfolio
           </motion.span>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-textPrimary mb-4 mt-2">Personal Projects</h2>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-textPrimary mb-4 mt-2">Projects</h2>
           <p className="text-textSecondary max-w-2xl mx-auto text-base sm:text-lg">
-            Showcasing expertise in Agentic AI, GenAI, and Web Development.
+            Enterprise platforms, hackathon builds, and personal projects in Agentic AI, GenAI, and Web Development.
           </p>
         </motion.div>
 
@@ -112,6 +112,12 @@ const ProjectCard = ({ project, index }) => {
       />
       
       <div className="h-44 sm:h-48 overflow-hidden bg-gradient-to-br from-gray-800 to-gray-900 relative">
+        {/* Origin/Category Label */}
+        {project.label && (
+          <div className="absolute top-3 left-3 z-20 px-3 py-1 bg-background/95 border border-primary/60 text-primary text-xs font-bold rounded-full shadow-lg">
+            {project.label}
+          </div>
+        )}
         {/* Development Status Badge */}
         {project.status && (
           <motion.div

@@ -73,8 +73,8 @@ const Contact = () => {
               </div>
 
               <div className="pt-8">
-                <a href="/Vineeth_Shenoy_P.pdf" download className="inline-block px-8 py-3 bg-card border border-primary text-primary hover:bg-primary hover:text-background rounded-md transition-all duration-300 font-medium">
-                  Download CV
+                <a href="/Vineeth_Shenoy_P.pdf" download className="inline-block px-8 py-3 bg-transparent border-2 border-secondary text-secondary hover:bg-secondary hover:text-background rounded-lg transition-all duration-300 font-medium">
+                  Download Resume
                 </a>
               </div>
             </div>
